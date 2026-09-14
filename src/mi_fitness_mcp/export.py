@@ -14,7 +14,6 @@ from typing import Any
 FORBIDDEN_EXPORT_FIELDS = {
     "pass_token",
     "passtoken",
-    "pass_token",
     "token",
     "password",
     "secret",
