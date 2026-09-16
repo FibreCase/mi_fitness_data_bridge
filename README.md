@@ -4,11 +4,23 @@
 
 [![Glama score](https://glama.ai/mcp/servers/shkyyy18/mi_fitness_data_bridge/badges/score.svg)](https://glama.ai/mcp/servers/shkyyy18/mi_fitness_data_bridge)
 
-这是一个把**小米运动健康（Mi Fitness）及相关小米设备数据导出到本地**的工具。你可以将运动、睡眠、心率、体重等数据保存为 SQLite、JSON 或 CSV 文件，再交给 ChatGPT、Claude、Gemini 等大模型进行分析、对比和总结。项目也提供 Python 接口和本地 MCP 工具，方便大模型或其他程序读取这些数据。
+**把小米运动健康（Mi Fitness）数据保存到自己的电脑，导出为 CSV、JSON 或 SQLite。** 适合个人备份、表格整理和自己的分析程序；也提供 Python 接口和本机 stdio MCP 查询工具。实际可获取的数据类型取决于设备、账户地区和上游服务。
 
 > **非官方、实验性项目。** 本项目与小米没有隶属、背书或支持关系；小米、米家（Mi Home）和 Mi Fitness 是小米公司的商标。适配器依赖非公开上游接口，小米的服务、账户地区、设备、固件或认证方式变化后，登录、连接或某些数据类型可能随时失效。仅可用于你有权访问的账户和数据。
 
-![小米设备数据导出skill合成数据终端演示](docs/assets/bridge-synthetic-demo.png)
+
+
+**[▶ 不用登录，先看合成数据导出演示](https://shkyyy18.github.io/mi_fitness_data_bridge/)** · [兼容性与上手限制](docs/compatibility.md) · [English](README.en.md)
+
+## 先试结果，再连接账户
+
+- **只是想看导出效果？** 打开上面的静态演示，在浏览器中切换活动、睡眠、运动和身体测量样例，下载合成 CSV / JSON。无需安装、账号或 Token。
+- **想验证本地流程？** 按下方安装步骤完成后，运行 `python examples/synthetic_demo.py`；无需 `setup`，不连接小米。
+- **想同步自己的数据？** 先阅读[兼容性和凭证前提](docs/compatibility.md)。当前没有一键账号授权流程，也不能保证所有设备和地区可用。
+
+> 演示只使用合成记录，不证明真实云端同步或设备兼容性。静态演示页不接收凭证或健康记录。真实导出可能含明文 `user_id`；本地 MCP 也不等于整个 AI 工作流离线，请另外确认客户端和模型如何处理数据。
+
+![合成睡眠记录导出预览：无需账号，可下载 CSV 和 JSON](docs/assets/synthetic-export-preview.png)
 
 *截图和本文全部示例均为合成数据；不含凭证、账户标识符或真实健康导出数据。*
 
@@ -200,3 +212,7 @@ Issue、测试、文档和截图中只可使用合成数据。安全问题请遵
 - 上游来源和 MIT 归属见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
 当前版本采用 **AGPL-3.0-only** 许可证；2026-08-03 之前发布的版本为 MIT。详见 [LICENSE](LICENSE)。
+
+## 帮助项目成长
+
+如果这个工具对你有用，欢迎点一个 **Star**，帮助有相同需求的人发现它。更有价值的是[安全反馈兼容性](https://github.com/shkyyy18/mi_fitness_data_bridge/issues/new?template=compatibility_report.yml)、改进安装文档或提供合成复现。请勿上传凭证或真实健康数据。

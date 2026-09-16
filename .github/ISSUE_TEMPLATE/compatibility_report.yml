@@ -1,0 +1,44 @@
+﻿name: Device compatibility feedback / 设备兼容性反馈
+description: Share model/region and dataset status only. Never upload health data or credentials.
+title: "[Compatibility]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Community reports are not maintainer verification. Share device model and status only.
+        禁止提交 Token、账号/设备 ID、序列号、数据库、真实健康记录、原始响应或私人日志。
+  - type: input
+    id: version
+    attributes:
+      label: Bridge version or commit / 项目版本
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Device model, account region, OS and Python / 设备型号、账户地区、系统与 Python
+      description: Model only; no serial number, account ID or device ID.
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Test date / 测试日期
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Dataset status / 数据类型与状态
+      description: Use works, empty, fails or not tested. No measurements, raw responses or logs.
+      placeholder: "Sleep: works; workouts: empty; heart rate: not tested"
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Privacy confirmation / 隐私确认
+      options:
+        - label: I used only my own authorized account and included no credentials, identifiers or health records.
+          required: true

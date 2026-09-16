@@ -1,5 +1,12 @@
 # Changelog
 
+
+## Unreleased
+
+- Add an account-free bilingual static demo built only from the synthetic SQLite/JSON/CSV export fixture, plus compatibility limitations and a privacy-safe feedback form.
+- Close read-only SQLite export connections explicitly to avoid leaked file handles, including Windows temporary-file cleanup failures.
+- Add regression tests for synthetic web samples and export connection cleanup.
+
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]

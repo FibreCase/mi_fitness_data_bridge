@@ -1,0 +1,43 @@
+﻿name: Weekend public metrics
+
+on:
+  schedule:
+    # 09:17 China time, September 17-20. Guard below prevents future-year runs.
+    - cron: '17 1 17-20 9 *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Collect public repository counts (no user tracking)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          now=$(date -u +%Y-%m-%d)
+          if [[ "$now" > "2026-09-20" ]]; then
+            echo "Review window ended; no metrics collected." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          mkdir -p metrics
+          gh api "repos/$GH_REPO" --jq '{repository: .full_name, stars: .stargazers_count, forks: .forks_count, open_issues: .open_issues_count}' > metrics/repository.json
+          date -u +%FT%TZ > metrics/collected-at.txt
+          {
+            echo '## Public repository snapshot'
+            echo 'Baseline: 20 stars on 2026-09-16. Target: 50 by 2026-09-20.'
+            echo 'Counts are not evidence of active users or campaign attribution.'
+            echo '```json'
+            cat metrics/repository.json
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-metrics-${{ github.run_id }}
+          path: metrics/
+          if-no-files-found: ignore
+          retention-days: 30

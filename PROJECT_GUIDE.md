@@ -2,11 +2,11 @@
 
 ## Project scope
 
-- Stable path: `D:\AIWork\repos\mi-fitness-bridge-audit`.
+- Stable path: `D:\AIWork\projects\mi_fitness_data_bridge`.
 - This project is the single implementation for reading a user's own Mi Fitness health data and exporting it to local standard formats.
 - It is infrastructure only: no fat-loss coaching, medical advice, personal dashboard, or business-specific analytics.
 
-The current maintained checkout is a linked worktree on `fix/audit-20260907`, tracking `origin/main`. Publish this checkout with `git push origin HEAD:main`; do not push or reset the unrelated old local `main` checkout. New installations may use the clone directory from README.
+As verified on 2026-09-16, the maintained checkout is on `main`, tracking `origin/main`, at the path above. The historical audit worktree is not present. Recheck `git status`, `git remote -v`, and `git worktree list` before publishing; do not reset or overwrite unrelated changes. New installations may use the clone directory from README.
 
 ## Working rules
 

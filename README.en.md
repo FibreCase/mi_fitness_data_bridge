@@ -1,18 +1,28 @@
 > 中文版：[README.md](README.md)
 
-# Mi Bridge (Mi Fitness Data Bridge)
+# Mi Fitness Data Bridge — local CSV/JSON export & MCP
 
 [![Glama score](https://glama.ai/mcp/servers/shkyyy18/mi_fitness_data_bridge/badges/score.svg)](https://glama.ai/mcp/servers/shkyyy18/mi_fitness_data_bridge)
 
-A simple way to **export your Mi Fitness and related Xiaomi-device data to your own computer**. Save activity, sleep, heart-rate, weight, and other available records as SQLite, JSON, or CSV, then use ChatGPT, Claude, Gemini, or another large language model to analyze, compare, and summarize them. Python integration and a local MCP server are included so programs and local AI tools can read the data.
+**Save your own Mi Fitness data locally as CSV, JSON or SQLite.** Back up records, open them in a spreadsheet, or use your own analysis programs. Python integration and a local stdio MCP server are included. Available data depends on the device, account region and upstream service.
 
 > **Unofficial and experimental.** This project is not affiliated with, endorsed by, or supported by Xiaomi. Xiaomi, Mi Home, and Mi Fitness are trademarks of Xiaomi Corporation. The adapter relies on non-public upstream endpoints, so authentication, connectivity, or individual data types can stop working when Xiaomi changes its services, account-region behavior, devices, firmware, or authentication. Use it only with accounts and data you are authorized to access.
 
-![Synthetic Mi Fitness Data Bridge terminal demo](docs/assets/bridge-synthetic-demo.png)
+
+
+**[▶ Try the synthetic export demo — no login](https://shkyyy18.github.io/mi_fitness_data_bridge/?lang=en)** · [Compatibility and limitations](docs/compatibility.md) · [中文](README.md)
+
+## See the output before connecting an account
+
+- **Just exploring?** Open the static demo, switch between activity, sleep, workout and body samples, and download synthetic CSV / JSON. No installation, account or token.
+- **Testing locally?** Install below, then run `python examples/synthetic_demo.py`. No `setup`, credentials or Xiaomi connection needed.
+- **Connecting your own account?** Read the [compatibility and credential prerequisites](docs/compatibility.md) first. There is no one-click account authorization flow and no guarantee of support for all devices or regions.
+
+> The demo uses invented records. It demonstrates local export, not live cloud sync or device compatibility. The static page accepts no credentials or health data. Real exports can contain a plaintext `user_id`. Local MCP does not make the entire AI workflow offline: review the client/model's data handling separately.
+
+![Synthetic Mi Fitness export preview: no account, downloadable CSV and JSON](docs/assets/synthetic-export-preview.en.png)
 
 *The screenshot and every example in this README use synthetic data. No credential, account identifier, or real health export is included.*
-
-> **In one sentence:** Export your Xiaomi health data to your own computer, then let an AI model help analyze changes over time.
 
 ## What it does
 
@@ -202,3 +212,7 @@ Use synthetic data only in issues, tests, documentation, and screenshots. Follow
 - See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for upstream provenance and MIT attribution.
 
 The current version is licensed under **AGPL-3.0-only**; versions published before 2026-08-03 were MIT. See [LICENSE](LICENSE).
+
+## Help others find the project
+
+If this solves a problem for you, consider a **Star**. [Privacy-safe compatibility feedback](https://github.com/shkyyy18/mi_fitness_data_bridge/issues/new?template=compatibility_report.yml), clearer setup instructions and synthetic reproductions are especially welcome. Never upload credentials or real health records.

@@ -6,7 +6,7 @@ import csv
 import json
 import os
 import sqlite3
-from contextlib import suppress
+from contextlib import closing, suppress
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
@@ -166,7 +166,7 @@ def export_database(
     selected = [dataset] if dataset else list(DATASETS)
     written: list[Path] = []
 
-    with _connect_read_only(database) as connection:
+    with closing(_connect_read_only(database)) as connection:
         records: dict[str, list[dict[str, Any]]] = {}
         columns: dict[str, list[str]] = {}
         for name in selected:

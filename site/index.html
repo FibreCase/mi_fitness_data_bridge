@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Mi Fitness Data Bridge · 小米运动健康数据导出演示</title>
+<meta name="description" content="Try a synthetic Mi Fitness CSV/JSON export in your browser. No account, no installation, no real health data. Unofficial local-first Python connector and MCP server.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script src="sample.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="#">MI FITNESS <span>DATA BRIDGE</span></a><nav aria-label="Main"><button id="language" type="button">English</button><a href="https://github.com/shkyyy18/mi_fitness_data_bridge">GitHub ↗</a></nav></header>
+<main>
+<section class="hero">
+<p class="eyebrow" data-zh="开源 · 本地优先 · 非官方 / 实验性" data-en="OPEN SOURCE · LOCAL-FIRST · UNOFFICIAL / EXPERIMENTAL"></p>
+<h1 data-zh="你的运动数据，<br>不止留在 App 里。" data-en="Your fitness data.<br>Beyond the app."></h1>
+<p class="lead" data-zh="把 Mi Fitness 数据保存到本机，导出 CSV / JSON，或接入本地 MCP 工作流。先用下面的合成样例，看看导出结果。" data-en="Save Mi Fitness records locally, export CSV / JSON, or connect a local MCP workflow. Explore a synthetic export below before installing anything."></p>
+<div class="actions"><a class="button primary" href="#demo" data-zh="查看导出样例 ↓" data-en="Explore the sample ↓"></a><a class="button" id="install" href="https://github.com/shkyyy18/mi_fitness_data_bridge#安装" data-zh="安装本地工具 ↗" data-en="Install locally ↗"></a></div>
+<div class="flow" aria-label="Data flow"><span>Mi Fitness*</span><i>→</i><span>Local SQLite</span><i>→</i><span>CSV / JSON / MCP</span></div>
+<p class="fine" data-zh="* 实际云端连接取决于账户地区、设备及非公开上游接口。本页不连接小米。" data-en="* Real cloud access depends on account region, device and private upstream endpoints. This page does not connect to Xiaomi."></p>
+</section>
+<section class="demo" id="demo" aria-labelledby="demo-title">
+<div class="section-head"><div><p class="eyebrow" data-zh="先看结果，无需账号" data-en="SEE THE OUTPUT. NO ACCOUNT NEEDED."></p><h2 id="demo-title" data-zh="从记录，到可用的表格。" data-en="From records to portable rows."></h2></div><span class="tag" data-zh="100% 合成数据" data-en="100% SYNTHETIC"></span></div>
+<p data-zh="下方样例由项目真实 SQLite → JSON/CSV 导出器生成。仅展示本地导出格式，不是实时云端同步或设备兼容性证明。" data-en="Generated using the project's real SQLite → JSON/CSV exporter. This previews local export formats, not live cloud sync or device compatibility."></p>
+<div class="tabs" role="group" aria-label="Sample dataset"><button type="button" data-dataset="daily_activity" aria-pressed="true" data-zh="日常活动" data-en="Activity"></button><button type="button" data-dataset="sleep" aria-pressed="false" data-zh="睡眠" data-en="Sleep"></button><button type="button" data-dataset="workouts" aria-pressed="false" data-zh="运动" data-en="Workouts"></button><button type="button" data-dataset="body_measurements" aria-pressed="false" data-zh="身体测量" data-en="Body"></button></div>
+<div id="preview" class="table-wrap" aria-live="polite"></div>
+<div class="download"><button class="button primary" id="csv" type="button" data-zh="下载合成 CSV" data-en="Download synthetic CSV"></button><button class="button" id="json" type="button" data-zh="下载合成 JSON" data-en="Download synthetic JSON"></button><span id="row-note"></span></div>
+<details><summary data-zh="查看完整 JSON 样例" data-en="Inspect the full JSON sample"></summary><pre id="json-preview"></pre></details>
+<noscript>Enable JavaScript for the synthetic preview, or run <code>python examples/synthetic_demo.py</code> locally. No account is required.</noscript>
+</section>
+<section class="cards"><article><span class="number">01</span><h2 data-zh="可带走的格式" data-en="Portable formats"></h2><p data-zh="JSON 用于程序处理；带 BOM 的 CSV 便于表格软件读取；SQLite 留在自己的电脑上。" data-en="JSON for programs. UTF-8 CSV with BOM for spreadsheets. SQLite on your own computer."></p></article><article><span class="number">02</span><h2 data-zh="不只是 MCP" data-en="More than MCP"></h2><p data-zh="CLI 可以独立使用。需要自动化时，再使用 Python 接口或本机 stdio MCP 客户端。" data-en="Use the CLI on its own. Add Python integration or a local stdio MCP client when you need automation."></p></article><article><span class="number">03</span><h2 data-zh="先明确边界" data-en="Know the limits"></h2><p data-zh="非官方、实验性。不是医疗工具，没有托管账户或公网凭证代理，也不承诺所有设备可用。" data-en="Unofficial and experimental. Not a medical tool, hosted account service or public credential proxy. Device support is not guaranteed."></p></article></section>
+<section class="safety"><h2 data-zh="这只是演示页，不接收你的数据。" data-en="A sample page, not a data collection service."></h2><p data-zh="没有登录框、文件上传、账号连接或分析追踪脚本。不要向 Issue、截图或第三方提交凭证、账号标识和真实健康记录。本机 MCP 不等于整个 AI 工作流离线；客户端和模型的数据流需要另行确认。" data-en="No login, upload, account connection or analytics scripts. Never submit credentials, account IDs or real health records in issues or screenshots. Local MCP does not make an entire AI workflow offline: review your client's and model's data handling separately."></p><a href="https://github.com/shkyyy18/mi_fitness_data_bridge/blob/main/docs/compatibility.md" data-zh="查看兼容性与限制 →" data-en="Compatibility and limitations →"></a></section>
+<section class="closing"><h2 data-zh="需要把自己的数据导出来？" data-en="Need your own data back?"></h2><p data-zh="查看代码、先试合成样例，再决定是否配置真实账户。觉得有用，可以在 GitHub 点个 Star。" data-en="Read the source, try the synthetic sample, then decide whether to configure your own account. If it's useful, consider a GitHub star."></p><a class="button primary" href="https://github.com/shkyyy18/mi_fitness_data_bridge" data-zh="查看 GitHub 项目 ↗" data-en="View the project on GitHub ↗"></a></section>
+</main><footer>Mi Fitness Data Bridge · AGPL-3.0-only · <a href="https://github.com/shkyyy18/mi_fitness_data_bridge/blob/main/THIRD_PARTY_NOTICES.md">Upstream attribution</a><p data-zh="与小米无隶属、背书或支持关系。Mi Fitness 是其权利人的商标。" data-en="Not affiliated with, endorsed by or supported by Xiaomi. Mi Fitness belongs to its respective trademark owner."></p></footer>
+</body></html>
