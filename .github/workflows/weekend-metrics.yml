@@ -30,6 +30,7 @@ jobs:
           # Public submission status only. No commenter identities or message bodies.
           gh api repos/punkpeye/awesome-mcp-servers/pulls/14504 --jq '{url: .html_url, state: .state, merged: .merged, comments: .comments, review_comments: .review_comments}' > metrics/directory-submission.json
           gh api repos/ruanyf/weekly/issues/11751 --jq '{url: .html_url, state: .state, comments: .comments}' > metrics/weekly-submission.json
+          gh api repos/521xueweihan/HelloGitHub/issues/3713 --jq '{url: .html_url, state: .state, comments: .comments}' > metrics/hellogithub-submission.json
           {
             echo '## Public repository snapshot'
             echo 'Baseline: 20 stars on 2026-09-16. Target: 50 by 2026-09-20.'
@@ -38,6 +39,7 @@ jobs:
             cat metrics/repository.json
             cat metrics/directory-submission.json
             cat metrics/weekly-submission.json
+            cat metrics/hellogithub-submission.json
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
